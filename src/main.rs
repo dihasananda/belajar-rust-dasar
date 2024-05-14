@@ -487,7 +487,7 @@ fn factorial_recursive(n: u32) -> u32 {
         return 1;
     }
 
-    return n * factorial_recursive(n - 1);
+    n * factorial_recursive(n - 1)
 }
 
 #[test]
@@ -495,3 +495,71 @@ fn test_factorial_recursive() {
     let result = factorial_recursive(5);
     println!("{}", result);
 }
+
+fn print_number(number: i32) {
+    println!("number: {}", number);
+}
+
+fn hi(name: String) {
+    println!("Hi, {}", name);
+}
+
+#[test]
+fn test_hi() {
+    let number = 10;
+    print_number(number);
+    println!("{}", number);
+
+    let name = String::from("Dihas");
+    hi(name);
+    // println!("{}", name);
+}
+
+fn full_name(first_name: &String, last_name: &String) -> String {
+    format!("{} {}", first_name, last_name)
+}
+
+#[test]
+fn test_full_name() {
+    let first_name = String::from("dihas");
+    let last_name = String::from("ananda");
+
+    let name = full_name(&first_name, &last_name);
+
+    println!("{}", name);
+    println!("{}", first_name);
+    println!("{}", last_name);
+}
+
+fn change_value(value: &mut String) {
+   value.push_str("test");
+}
+
+#[test]
+fn test_change_value() {
+    let mut value= String::from("dihas ");
+    let value_borrow = &mut value;
+
+    change_value(value_borrow);
+    change_value(value_borrow);
+    change_value(value_borrow);
+
+    println!("{}", value);
+}
+    
+    fn get_full_name(first_name: &String, last_name: &String) -> String {
+        let name = format!("{} {}", first_name, last_name);
+        return name;
+    }
+    
+    #[test]
+    fn test_get_full_name() {
+        let first_name = String::from("dihas");
+        let last_name = String::from("ananda");
+    
+        let full_name = get_full_name(&first_name, &last_name);
+    
+        println!("{}", full_name);
+        println!("{}", first_name);
+        println!("{}", last_name);
+    }
