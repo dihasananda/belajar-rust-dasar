@@ -590,3 +590,59 @@ fn string_slice() {
     let last_name = &name[6..];
     println!("{}", last_name);
 }
+
+// STRUCT
+struct Person {
+   first_name: String,
+   last_name: String,
+   age: u8,
+}
+
+#[test]
+fn struct_person() {
+   let first_name = String::from("dihas");
+   let last_name = String::from("ananda");
+
+
+   let mut person = Person {
+      first_name,
+      last_name,
+      age: 25,
+   };
+
+   person.first_name = String::from("Dihas");
+
+   // println!("{}", first_name); //error
+
+   
+   let person2 = Person { 
+      first_name: person.first_name.clone(),
+      last_name: person.last_name.clone(),
+      ..person 
+   };
+   
+   print_person(&person);
+   print_person(&person2);
+}
+
+fn print_person(person: &Person) {
+   println!("{} {} {}", person.first_name, person.last_name, person.age);
+}
+
+struct GeoPoint(f64, f64);
+
+#[test]
+fn tuple_struct() {
+    let geo_point = GeoPoint(125.5, 256.4);
+    println!("{} {}", geo_point.0, geo_point.1);
+}
+
+struct Nothing;
+
+#[test]
+fn test_nothing() {
+    let _nothing = Nothing;
+    let _nothing2 = Nothing{};
+
+
+}
