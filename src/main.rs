@@ -641,8 +641,37 @@ struct Nothing;
 
 #[test]
 fn test_nothing() {
-    let _nothing = Nothing;
+   //diberi underscore di depan variable jika tidak berinat digunakan
+    let _nothing = Nothing; 
     let _nothing2 = Nothing{};
-
-
 }
+
+impl Person {
+    fn say_hello(&self, name: &str) {
+        println!("hello  {}, my name is {}", name, self.first_name);
+    }
+}
+
+#[test]
+fn test_method() {
+    let person = Person {
+      first_name: String::from("dihas"),
+      last_name: String::from("ananda"),
+      age: 20,
+    };
+
+    person.say_hello("budi");
+}
+
+impl GeoPoint {
+    fn new(long: f64, lat: f64) -> GeoPoint {
+      GeoPoint(long, lat)
+    }
+}
+
+#[test]
+fn test_associated_function() {
+    let geo_point = GeoPoint::new(2.5, 5.5);
+    println!("{} {}", geo_point.0, geo_point.1);
+}
+
