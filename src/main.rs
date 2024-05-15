@@ -547,19 +547,36 @@ fn test_change_value() {
     println!("{}", value);
 }
     
-    fn get_full_name(first_name: &String, last_name: &String) -> String {
-        let name = format!("{} {}", first_name, last_name);
-        return name;
-    }
-    
-    #[test]
-    fn test_get_full_name() {
-        let first_name = String::from("dihas");
-        let last_name = String::from("ananda");
-    
-        let full_name = get_full_name(&first_name, &last_name);
-    
-        println!("{}", full_name);
-        println!("{}", first_name);
-        println!("{}", last_name);
-    }
+fn get_full_name(first_name: &String, last_name: &String) -> String {
+   let name = format!("{} {}", first_name, last_name);
+   return name;
+}
+
+#[test]
+fn test_get_full_name() {
+   let first_name = String::from("dihas");
+   let last_name = String::from("ananda");
+
+   let full_name = get_full_name(&first_name, &last_name);
+
+   println!("{}", full_name);
+   println!("{}", first_name);
+   println!("{}", last_name);
+}
+
+#[test]
+fn slice_reference() {
+   let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+   let slice1 = &array[..];
+   println!("{:?}", slice1);
+
+   let slice2 = &array[1..5];
+   println!("{:?}", slice2);
+
+   let slice3 = &array[..5];
+   println!("{:?}", slice3);
+
+   let slice4 = &array[5..];
+   println!("{:?}", slice4);
+}
