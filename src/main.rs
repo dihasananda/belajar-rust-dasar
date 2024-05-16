@@ -1,5 +1,3 @@
-use std::result;
-
 fn main() {
     println!("Hello, world!");
     
@@ -853,4 +851,25 @@ fn test_match_expression() {
     };
 
     println!("{}", result);
+}
+
+// Type Alias
+type Age = u8;
+type IdentityNumber = String;
+
+struct Customer {
+   id: IdentityNumber,
+   name: String,
+   age: Age,
+}
+
+#[test]
+fn test_type_alias() {
+    let customer = Customer {
+      id: String::from("23456"),
+      name: String::from("dihas"),
+      age: 25,
+    };
+
+    println!("{} {} {}", customer.id, customer.name, customer.age);
 }
