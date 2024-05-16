@@ -1,5 +1,6 @@
 mod first;
 mod second;
+mod third;
 mod model;
 
 
@@ -11,6 +12,7 @@ use model::User;
 fn test_use() {
    say_hello();
    say_hello_second();
+   first::second::third::say_hello();
 }
 
 
