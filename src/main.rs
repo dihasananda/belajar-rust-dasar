@@ -675,3 +675,39 @@ fn test_associated_function() {
     println!("{} {}", geo_point.0, geo_point.1);
 }
 
+enum Level {
+   Regular,
+   Premium,
+   Platinum,
+}
+
+#[test]
+fn test_enum() {
+    let _level1 = Level::Regular;
+    let _level2 = Level::Platinum;
+    let _level3 = Level::Premium;
+}
+
+enum Payment {
+   CreditCart(String),
+   BankTransfer(String, String),
+   EWallet(String, String),
+}
+
+impl Payment {
+   fn pay (&self, amount: u32) {
+      println!("paying amount {}", amount);
+   }
+}
+
+#[test]
+fn test_payment() {
+    let _payment1 = Payment::CreditCart(String::from("123455"));
+    _payment1.pay(50000);
+    
+    let _payment2 = Payment::BankTransfer(String::from("BCA"), String::from("123123"));
+    _payment2.pay(50000);
+    
+    let _payment3 = Payment::EWallet(String::from("Gopay"), String::from("123123"));
+    _payment3.pay(50000);
+}
