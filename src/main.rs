@@ -992,3 +992,18 @@ fn test_return_trait() {
     println!("{}", person.good_bye());
     println!("{}", person.good_bye_to("budi"));
 }
+
+trait CanSay: CanSayHello + CanSayGoodBye {
+   fn say(&self) {
+      println!("{}", self.say_hello());
+      println!("{}", self.good_bye());
+   }
+}
+
+struct SimpleMan {
+   name: String,
+}
+
+impl CanSay for SimpleMan {
+    
+}
