@@ -1189,7 +1189,7 @@ struct Category {
    name: String,
 }
 
-use std::fmt::Debug;
+use std::{collections::VecDeque, fmt::Debug};
 
 impl Debug for Category {
    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -1276,4 +1276,75 @@ fn test_counter() {
     counter.increment();
 
     println!("Counter {}", counter.counter);
+}
+
+// Collection
+/*
+collection di rust ada 3
+1. sequence: memiliki index
+2. map: key-value
+3. sets: data unik
+ */
+
+// Sequence
+
+//vector
+// sesuai dengan yang diingkan urutannya
+// cocok sebagai stack (tumpukan), last in first out
+#[test]
+fn test_vector() {
+    let array = ["dihas", "ananda"];
+
+    for value in array {
+      println!("{}", value);
+    }
+
+    let mut names = Vec::<String>::new();
+    names.push(String::from("dihas"));
+    names.push(String::from("ananda"));
+
+    for name in &names {
+      println!("{}", name);
+    }
+
+    println!("{:?}", names);
+    println!("{}", names[0]);
+}
+
+//VecDeque
+// menambah data di depan (head) dan belakang (end)
+// cocok sebagai Queue (Antrian), first in first out
+
+
+#[test]
+fn test_vec_deque() {
+    let mut names = VecDeque::new();
+    names.push_back(String::from("dihas"));
+    names.push_back(String::from("ananda"));
+    names.push_front(String::from("ananda"));
+
+    for name in &names {
+      println!("{}", name)
+   }
+   
+   println!("{:?}", names);
+   println!("{}", names[0]);
+}
+
+//linkedList
+use std::collections::LinkedList;
+
+#[test]
+fn test_linked_list() {
+    let mut names = LinkedList::new();
+    names.push_back(String::from("dihas"));
+    names.push_back(String::from("ananda"));
+    names.push_front(String::from("ananda"));
+
+    for name in &names {
+      println!("{}", name)
+   }
+   
+   println!("{:?}", names);
+   // println!("{}", names[0]);
 }
