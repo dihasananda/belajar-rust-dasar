@@ -1053,7 +1053,7 @@ fn test_generic_enum() {
     }
 }
 
-struct Hi<T> where T: CanSayGoodBye {
+struct Hi<T = SimplePerson> where T: CanSayGoodBye {
    value: T,
 }
 
