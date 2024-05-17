@@ -1182,3 +1182,29 @@ fn test_string_manipulation() {
     println!("{}", &s[..5]);
     println!("{:?}", s.get(..5));
 }
+
+struct Category {
+   id: String,
+   name: String,
+}
+
+use std::fmt::Debug;
+
+impl Debug for Category {
+   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+       f.debug_struct("Category")
+         .field("id", &self.id)
+         .field("name", &self.name)
+         .finish()
+   }
+}
+
+#[test]
+fn test_format() {
+   let category = Category {
+      name: String::from("gadget"),
+      id: String::from("GADGED"),
+   };
+
+   println!("{:?}", category);
+}
