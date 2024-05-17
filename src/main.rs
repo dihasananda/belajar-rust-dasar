@@ -1100,6 +1100,7 @@ impl<T>  GetValue<T> for Point<T> where T: PartialOrd {
     }
 }
 
+// Overloadable operator
 use core::ops::Add;
 
 struct Apple {
