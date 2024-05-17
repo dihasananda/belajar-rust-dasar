@@ -1332,7 +1332,8 @@ fn test_vec_deque() {
 }
 
 //linkedList
-use std::collections::LinkedList;
+// lebih efisien
+use std::collections::{BTreeMap, LinkedList};
 
 #[test]
 fn test_linked_list() {
@@ -1347,4 +1348,43 @@ fn test_linked_list() {
    
    println!("{:?}", names);
    // println!("{}", names[0]);
+}
+
+// Maps
+/*
+1. HashMap : tidak diurutkan, lebih cepat
+2. BTreeMap : diurutkan , balance tree map
+*/
+
+// HashMap
+use std::collections::HashMap;
+
+#[test]
+fn test_hash_map() {
+    let mut map = HashMap::new();
+    map.insert(String::from("name"), String::from("dihas"));
+    map.insert(String::from("age"), String::from("26"));
+    map.insert(String::from("country"), String::from("Indonesia"));
+
+    let name = map.get("name");
+    let age = map.get("age");
+
+    println!("Name {}, age {}", name.unwrap(), age.unwrap());
+    
+    for entry in map {
+      println!("{}: {}", entry.0, entry.1)
+    }
+}
+
+//BTreeMap 
+#[test]
+fn test_btree_map() {
+    let mut map = BTreeMap::new();
+    map.insert(String::from("name"), String::from("dihas"));
+    map.insert(String::from("age"), String::from("26"));
+    map.insert(String::from("country"), String::from("Indonesia"));
+
+    for entry in map {
+      println!("{}: {}", entry.0, entry.1)
+    }
 }
