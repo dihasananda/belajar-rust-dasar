@@ -1126,6 +1126,7 @@ fn test_operator_add() {
     println!("{}", apple3.quantity);
 }
 
+// Optional values
 fn double(value: Option<i32>) -> Option<i32> {
    match value {
       None => None,
@@ -1142,6 +1143,7 @@ fn test_option() {
    println!("{:?}", result);
 }
 
+// Comparing
 impl PartialEq for Apple {
    fn eq(&self, other: &Self) -> bool {
       self.quantity == other.quantity
@@ -1162,4 +1164,21 @@ fn test_compare() {
     println!("Apple1 == Apple2: {}", apple1 == apple2);
     println!("Apple1 > Apple2: {}", apple1 > apple2);
     println!("Apple1 <= Apple2: {}", apple1 <= apple2);
+}
+
+// String manipulation
+#[test]
+fn test_string_manipulation() {
+    let s = String::from("dihas ananda");
+
+    println!("{}", s.to_uppercase());
+    println!("{}", s.to_lowercase());
+    println!("{}", s.len());
+    println!("{}", s.replace("dihas", "Dihas"));
+    println!("{}", s.contains("dihas"));
+    println!("{}", s.starts_with("dihas"));
+    println!("{}", s.ends_with("ananda"));
+    println!("{}", s.trim());
+    println!("{}", &s[..5]);
+    println!("{:?}", s.get(..5));
 }
