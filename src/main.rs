@@ -1333,7 +1333,7 @@ fn test_vec_deque() {
 
 //linkedList
 // lebih efisien
-use std::collections::{BTreeMap, LinkedList};
+use std::collections::{BTreeMap, BTreeSet, HashSet, LinkedList};
 
 #[test]
 fn test_linked_list() {
@@ -1386,5 +1386,41 @@ fn test_btree_map() {
 
     for entry in map {
       println!("{}: {}", entry.0, entry.1)
+    }
+}
+
+// Sets
+/*
+1. HashSet: tidak diurutkan, lebih cepat
+2. BTreeSet: diurutkan
+*/
+
+// HashSet
+#[test]
+fn test_hash_set() {
+    let mut set = HashSet::new();
+    set.insert(String::from("dihas"));
+    set.insert(String::from("dihas"));
+    set.insert(String::from("ananda"));
+    set.insert(String::from("ananda"));
+    set.insert(String::from("dihas"));
+
+    for value in set {
+      println!("{}", value);
+    }
+}
+
+// BTreeSet
+#[test]
+fn test_btree_set() {
+    let mut set = BTreeSet::new();
+    set.insert(String::from("dihas"));
+    set.insert(String::from("dihas"));
+    set.insert(String::from("ananda"));
+    set.insert(String::from("ananda"));
+    set.insert(String::from("dihas"));
+
+    for value in set {
+      println!("{}", value);
     }
 }
