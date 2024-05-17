@@ -993,17 +993,109 @@ fn test_return_trait() {
     println!("{}", person.good_bye_to("budi"));
 }
 
-trait CanSay: CanSayHello + CanSayGoodBye {
-   fn say(&self) {
-      println!("{}", self.say_hello());
-      println!("{}", self.good_bye());
+// trait CanSay: CanSayHello + CanSayGoodBye {
+//    fn say(&self) {
+//       println!("{}", self.say_hello());
+//       println!("{}", self.good_bye());
+//    }
+// }
+
+// struct SimpleMan {
+//    name: String,
+// }
+
+// impl CanSay for SimpleMan {
+    
+// }
+
+// Generic
+struct Point<T = i32> {
+   x: T,
+   y: T,
+}
+
+impl<T> Point<T> {
+   fn get_x(&self) -> &T {
+      &self.x
+   }
+
+   fn get_y(&self) ->  &T {
+      &self.y
    }
 }
 
-struct SimpleMan {
-   name: String,
+#[test]
+fn test_generic_struct() {
+    let integer = Point::<i32> { x: 5, y: 10 };
+    let float = Point::<f64> { x: 1.2, y: 2.0 };
+
+   println!("{} {}", integer.x, integer.y);
+   println!("{} {}", float.x, float.y);
 }
 
-impl CanSay for SimpleMan {
-    
+enum Value<T> {
+   NONE,
+   VALUE(T),
+}
+
+#[test]
+fn test_generic_enum() {
+    let _none = Value::<i32>::NONE;
+    let value = Value::<i32>::VALUE(10);
+
+    match value {
+        Value::NONE => {
+         println!("none")
+      }
+        Value::VALUE(value) => {
+         println!("value {}", value)
+      }
+    }
+}
+
+struct Hi<T> where T: CanSayGoodBye {
+   value: T,
+}
+
+#[test]
+fn test_generic_struct_with_trait() {
+    let hi = Hi::<SimplePerson> {
+      value: SimplePerson {
+         name: String::from("dihas")
+      }
+    };
+    println!("{}", hi.value.name);
+}
+
+fn min<T>(value1: T, value2: T) -> T where T: PartialOrd {
+   if value1 < value2 {
+      value1
+   } else {
+      value2
+   }
+}
+
+#[test]
+fn generic_in_function() {
+    let result = min::<i32>(10,20);
+    println!("{}", result);
+
+    let result = min(50,30);
+    println!("{}", result);
+}
+
+#[test]
+fn test_generic_method() {
+    let point = Point{x: 10, y:20};
+    println!("{} {} {}", point.get_x(), point.get_y(), point.get_value());
+}
+
+trait GetValue<T> where T: PartialOrd {
+    fn get_value(&self) -> &T;
+}
+
+impl<T>  GetValue<T> for Point<T> where T: PartialOrd {
+    fn get_value(&self) -> &T {
+        &self.x
+    }
 }
