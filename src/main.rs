@@ -1647,3 +1647,38 @@ fn test_lifetime_annotation_generic() {
     };
     println!("{} {}", teacher.id, teacher.name)
 }
+
+// Attribute
+// #[namaAtribute]
+// seperti decorator dalam ts
+
+// derive attribute
+
+#[derive(Debug, PartialEq, PartialOrd)]
+struct Company {
+   name: String,
+   location: String,
+   website: String,
+}
+
+#[test]
+fn test_attribute_debug() {
+    let company = Company {
+      name: "dihas ananda".to_string(),
+      location: "indonesia".to_string(),
+      website: "dihasananda.com".to_string(),
+    };
+    let company2 = Company {
+      name: "dihas ananda".to_string(),
+      location: "indonesia".to_string(),
+      website: "dihasananda.com".to_string(),
+    };
+
+    println!("{:?}", company);
+
+    let result = company == company2;
+    println!("{}", result);
+
+    let result = company > company2;
+    println!("{}", result);
+}
