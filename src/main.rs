@@ -1879,3 +1879,10 @@ fn test_static_mut() {
       println!("COUNTER: {}", COUNTER);
     }
 }
+
+// Macro
+
+// kode untuk membuat kode lainnya
+// metaprogramming
+
+//declarative macro
