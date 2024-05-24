@@ -1727,3 +1727,51 @@ fn test_box_enum() {
 fn print_category(category: &ProductCategory) {
    println!("{:?}", category);
 }
+
+// Dereference
+
+#[test]
+fn test_dereferene() {
+    let value1 = Box::new(10);
+    let value2 = Box::new(20);
+
+    let result = *value1 * *value2;
+    println!("{}", result);
+}
+
+// deref trait
+
+struct MyValue<T> {
+   value: T,
+}
+
+use std::ops::Deref;
+
+impl<T> Deref for MyValue<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+      &self.value
+    }
+}
+
+#[test]
+fn test_dereference_struct() {
+    let value = MyValue { value: 10 };
+    let real_value = *value;
+    println!("value: {}", real_value)
+}
+
+// deref untuk parameter
+
+fn say_hello_reference(name: &String) {
+   println!("Hello {}", name);
+}
+
+#[test]
+fn test_deref_reference() {
+    let name = MyValue{
+      value: "dihas".to_string()
+    };
+    say_hello_reference(&name)
+}
