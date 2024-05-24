@@ -1775,3 +1775,23 @@ fn test_deref_reference() {
     };
     say_hello_reference(&name)
 }
+
+// Cleanup
+
+//drop trait, membuat kode sebelum value di drop/hapus dari memori
+
+struct Book {
+   title: String,
+}
+
+impl Drop for Book {
+   fn drop(&mut self) {
+      println!("Dropping Book {}", self.title)
+   }
+}
+
+#[test]
+fn test_drop() {
+    let book = Book { title: "rust".to_string() };
+    println!("{}", book.title);
+}
