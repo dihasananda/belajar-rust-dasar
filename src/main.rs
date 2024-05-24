@@ -1189,6 +1189,7 @@ struct Category {
    name: String,
 }
 
+use std::rc::Rc;
 use std::{collections::VecDeque, fmt::Debug};
 
 impl Debug for Category {
@@ -1794,4 +1795,34 @@ impl Drop for Book {
 fn test_drop() {
     let book = Book { title: "rust".to_string() };
     println!("{}", book.title);
+}
+
+// Multiple Ownership
+
+//Rc<T> reference counted
+// merupakan smart pointer, namun bisa beberapa owner
+
+enum Brand {
+    Of(String, Rc<Brand>),
+    End
+}
+
+#[test]
+fn test_multiple_ownership_box() {
+   let apple = Rc::new(Brand::Of("Apple".to_string(), Rc::new(Brand::End)));
+   println!("Apple reference count: {}", Rc::strong_count(&apple));
+   
+   let laptop = Rc::new(Brand::Of("laptop".to_string(), Rc::clone(&apple)));
+   println!("Apple reference count: {}", Rc::strong_count(&apple));
+
+   {
+      let smartphone = Rc::new(Brand::Of("smartphone".to_string(), Rc::clone(&apple)));
+      println!("Apple reference count: {}", Rc::strong_count(&apple));
+   }
+   
+   println!("Apple reference count: {}", Rc::strong_count(&apple));
+
+   //  let apple = ProductCategory::Of("apple".to_string(), Box::new(ProductCategory::End));
+   //  let laptop = ProductCategory::Of("laptop".to_string(), Box::new(apple));
+   //  let smartphone = ProductCategory::Of("smartphone".to_string(), Box::new(apple));
 }
