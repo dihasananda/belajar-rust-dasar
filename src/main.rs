@@ -1884,5 +1884,92 @@ fn test_static_mut() {
 
 // kode untuk membuat kode lainnya
 // metaprogramming
+// implementasi macro lebih kompleks daripada function biasa
 
 //declarative macro
+
+macro_rules! hi {
+   () => {
+      println!("Hi macro!");
+   };
+   ($name: expr) => {
+      println!("Hi, {}!", $name);
+   };
+}
+
+#[test]
+fn test_macro() {
+    hi!();
+    hi!("dihas");
+    hi! {
+      "ananda"
+    };
+    let name = "dihasanada";
+    hi!(name);
+}
+
+macro_rules! iterate {
+   ($array: expr) => {
+      for i in $array {
+         println!("{}", i);
+      }
+   };
+   ($($item: expr), *) => {
+      $(
+         println!("{}", $item);
+      )*
+   }
+}
+
+#[test]
+fn test_macro_iterate() {
+    iterate!([1,2,3,4,5,6,7,8,9]);
+    iterate!(1,2,3,4,5,6,7,8,9);
+}
+
+// Macro
+
+// kode untuk membuat kode lainnya
+// metaprogramming
+// implementasi macro lebih kompleks daripada function biasa
+
+//declarative macro
+
+macro_rules! hi {
+   () => {
+      println!("Hi macro!");
+   };
+   ($name: expr) => {
+      println!("Hi, {}!", $name);
+   };
+}
+
+#[test]
+fn test_macro() {
+    hi!();
+    hi!("dihas");
+    hi! {
+      "ananda"
+    };
+    let name = "dihasanada";
+    hi!(name);
+}
+
+macro_rules! iterate {
+   ($array: expr) => {
+      for i in $array {
+         println!("{}", i);
+      }
+   };
+   ($($item: expr), *) => {
+      $(
+         println!("{}", $item);
+      )*
+   }
+}
+
+#[test]
+fn test_macro_iterate() {
+    iterate!([1,2,3,4,5,6,7,8,9]);
+    iterate!(1,2,3,4,5,6,7,8,9);
+}
