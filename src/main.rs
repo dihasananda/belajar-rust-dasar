@@ -1851,5 +1851,31 @@ fn test_ref_cell() {
     *result = "ananda".to_string();
     }
     println!("{:?}", seller);
+}
 
+// Static
+
+static APPLICATION: &str = "My application";
+
+#[test]
+fn test_static() {
+    println!("{}", APPLICATION);
+}
+
+//mutable static
+// wajib menggunakan unsafe block
+
+static mut COUNTER: u32 =0;
+
+unsafe fn increment() {
+   COUNTER += 1;
+}
+
+#[test]
+fn test_static_mut() {
+    unsafe {
+      increment();
+      COUNTER += 1;
+      println!("COUNTER: {}", COUNTER);
+    }
 }
