@@ -1189,6 +1189,7 @@ struct Category {
    name: String,
 }
 
+use std::cell::RefCell;
 use std::rc::Rc;
 use std::{collections::VecDeque, fmt::Debug};
 
@@ -1825,4 +1826,30 @@ fn test_multiple_ownership_box() {
    //  let apple = ProductCategory::Of("apple".to_string(), Box::new(ProductCategory::End));
    //  let laptop = ProductCategory::Of("laptop".to_string(), Box::new(apple));
    //  let smartphone = ProductCategory::Of("smartphone".to_string(), Box::new(apple));
+}
+
+// Interior Mutability
+
+// memperbolehkan mengubah data walau reference imutable
+// RefCell<T>, single ownership
+
+#[derive(Debug)]
+struct Seller {
+   name: RefCell<String>,
+   active: RefCell<bool>,
+}
+
+#[test]
+fn test_ref_cell() {
+    let seller = Seller {
+      name: RefCell::new("dihas".to_string()),
+      active: RefCell::new(true),
+    };
+
+    {
+    let mut result = seller.name.borrow_mut();
+    *result = "ananda".to_string();
+    }
+    println!("{:?}", seller);
+
 }
